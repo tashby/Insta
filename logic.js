@@ -1,30 +1,36 @@
-var clientId = '2644462b52924f83b1c3914d95cc24a7',
-    hashTag = 'popular', 
-    num_photos = 4; 
-    endpoint = 'https://api.instagram.com/v1/tags/nofilter/media/recent?access_token=2644462b52924f83b1c3914d95cc24a7',
-   endpoint = BASE_URL +'/media/popular?client_id=' +clientId;
+var starWars;
+    api = 'http://swapi.co/api/';
 
-
-     "rotation_period": "24",
-    "orbital_period": "4818",
-    type: "GET",
-    cache: false,
-    url: endpoint,
-    //dataType:
-    data: {
-       // access_token: token,
-        count: num_photos
-    },
-    success: function(data) {
-        for (var i = 0; i < 6; i++) {
-            $(".popular").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url + "'></img></a></li>");
-        }
-    }
+function gotData(data){
+    starWars = data;
+}
  
+function getSearch(){
+        var url = api + input;
+    $.getJSON(url, gotData);
+    console.log();
+}
 
+function setup(){
+    var button = ('.submit').select;
+    button.mouseClick(getSearch);
+
+    input = ('#search-form').select;
+}
 
 
 $.ajax({
-    url: http://swapi.co/api/planets/,
-    
-    }); 
+            type: "GET",
+            dataType: 'json',
+            cache: false,
+            url: api,
+            success: function (data) {
+                alert('success');
+                console.log(data);
+                var html = "";
+                $.each(data, function(index, value){
+                    html += '<p>' + data +'</p>';
+                    console.log(data);
+                    $('#search-results').html(html);
+                });
+            }});
