@@ -1,23 +1,5 @@
 var starWars;
-    api = 'http://swapi.co/api/';
-
-function gotData(data){
-    starWars = data;
-}
- 
-function getSearch(){
-        var url = api + input;
-    $.getJSON(url, gotData);
-    console.log();
-}
-
-function setup(){
-    var button = ('.submit').select;
-    button.mouseClick(getSearch);
-
-    input = ('#search-form').select;
-}
-
+var api = 'http://swapi.co/api/people';
 
 $.ajax({
             type: "GET",
@@ -25,12 +7,12 @@ $.ajax({
             cache: false,
             url: api,
             success: function (data) {
-                alert('success');
-                console.log(data);
+                /*alert('success');*/
+                
                 var html = "";
-                $.each(data, function(index, value){
-                    html += '<p>' + data +'</p>';
-                    console.log(data);
+                $.each(data.results, function(index, value){
+                    html += '<p>' + value.count +'</p>';
+                    console.log(value);
                     $('#search-results').html(html);
                 });
             }});
